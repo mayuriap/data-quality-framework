@@ -1,0 +1,12 @@
+venv/
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+reports/
+*.egg-info/
+.great_expectations/
+target/
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
