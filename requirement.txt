@@ -1,0 +1,11 @@
+great-expectations==1.4.1
+dbt-core==1.12.5
+dbt-postgres==1.11.0
+behave
+psycopg2-binary
+sqlalchemy
+pandas
+python-dotenv
+loguru
+allure-behave
+autopep8

@@ -34,6 +34,7 @@ class ConfigManager:
 
     def __init__(self, environment :str = None):
 
+        
         """
         Initialise with environment from .env or parameter.
         Args:
