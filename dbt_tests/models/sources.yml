@@ -1,0 +1,161 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: public_bronze
+    tables:
+      - name: stg_customers
+        description: "Bronze customers with DQ flags"
+        columns:
+          - name: customer_id
+            tests:
+              - not_null
+          - name: dq_email_flag
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['OK', 'MISSING_EMAIL', 'INVALID_EMAIL']
+          - name: dq_name_flag
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['OK', 'MISSING_NAME']
+          - name: dq_phone_flag
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['OK', 'MISSING_PHONE', 'INVALID_PHONE']
+
+      - name: stg_transactions
+        description: "Bronze transactions with DQ flags"
+        columns:
+          - name: transaction_id
+            tests:
+              - not_null
+          - name: amount
+            tests:
+              - dbt_utils.accepted_range:
+                  min_value: -999999.99
+                  max_value: 999999.99
+                  where: "amount IS NOT NULL"
+          - name: dq_amount_flag
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['OK', 'MISSING_AMOUNT', 'NEGATIVE_AMOUNT', 'AMOUNT_TOO_LARGE']
+          - name: dq_currency_flag
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['OK', 'MISSING_CURRENCY', 'INVALID_CURRENCY']
+          - name: dq_date_flag
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['OK', 'FUTURE_DATE']
+          - name: dq_status_flag
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['OK', 'INVALID_STATUS']
+
+  - name: silver
+    schema: public_silver
+    tables:
+      - name: int_customers
+        description: "Silver customers — cleaned data only"
+        columns:
+          - name: customer_id
+            tests:
+              - not_null
+              - unique
+          - name: email
+            tests:
+              - not_null
+          - name: first_name
+            tests:
+              - not_null
+          - name: last_name
+            tests:
+              - not_null
+          - name: segment
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['RETAIL', 'PREMIUM', 'BUSINESS']
+
+      - name: int_transactions
+        description: "Silver transactions — cleaned data only"
+        columns:
+          - name: transaction_id
+            tests:
+              - not_null
+              - unique
+          - name: amount
+            tests:
+              - not_null
+              - dbt_utils.accepted_range:
+                  min_value: 0.01
+                  max_value: 999999.99
+          - name: currency
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['GBP', 'USD', 'EUR', 'JPY', 'CHF']
+          - name: status
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['COMPLETED', 'PENDING', 'FAILED']
+          - name: transaction_date
+            tests:
+              - not_null
+          - name: customer_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('silver', 'int_customers')
+                  field: customer_id
+
+  - name: gold
+    schema: public_gold
+    tables:
+      - name: gold_daily_summary
+        description: "Gold daily aggregations by currency"
+        columns:
+          - name: transaction_date
+            tests:
+              - not_null
+          - name: currency
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['GBP', 'USD', 'EUR', 'JPY', 'CHF']
+          - name: total_amount
+            tests:
+              - not_null
+              - dbt_utils.accepted_range:
+                  min_value: 0
+          - name: total_transactions
+            tests:
+              - not_null
+              - dbt_utils.accepted_range:
+                  min_value: 1
+
+      - name: gold_customer_summary
+        description: "Gold customer level aggregations"
+        columns:
+          - name: customer_id
+            tests:
+              - not_null
+              - unique
+          - name: total_spend
+            tests:
+              - dbt_utils.accepted_range:
+                  min_value: 0
+                  where: "total_spend IS NOT NULL"
+          - name: total_transactions
+            tests:
+              - not_null
+              - dbt_utils.accepted_range:
+                  min_value: 0
