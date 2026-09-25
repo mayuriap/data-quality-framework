@@ -304,3 +304,18 @@ Happy modeling!
 [0m18:46:01.628951 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001CAE2A9E5A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001CAE29B0590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001CAE24AEC90>]}
 [0m18:46:01.638654 [debug] [MainThread]: Flushing usage events
 [0m18:46:02.599728 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m00:06:56.811717 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026CF173DD60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026CF4E284D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026CF4E29580>]}
+
+
+============================== 00:06:56.811717 | 5faede35-4e6e-430e-8235-d7ba3937d72d ==============================
+[0m00:06:56.811717 [info ] [MainThread]: Running with dbt=1.12.5
+[0m00:06:56.811717 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'version_check': 'True', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\mayur\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt test', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m00:06:56.818988 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\mayur\Projects\data-quality-framework\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m00:06:56.818988 [debug] [MainThread]: Command `dbt test` failed at 00:06:56.818988 after 0.16 seconds
+[0m00:06:56.818988 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026CF173DD60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026CF68F3C50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000026CF6A2EA20>]}
+[0m00:06:56.820502 [debug] [MainThread]: Flushing usage events
+[0m00:06:57.542090 [debug] [MainThread]: An error was encountered while trying to flush usage events
