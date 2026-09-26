@@ -52,3 +52,12 @@ Feature: ETL Data Quality Validation using dbt
     Given the Silver layer has data
     When I run all dbt tests
     Then duplicate findings should be logged and reported
+
+  Scenario: Great Expectations validates data quality across all layers
+    Given the ETL pipeline has run
+    When I run Great Expectations validation on all layers
+    Then all GE expectations should pass
+    And Bronze layer GE expectations should pass
+    And Silver layer GE expectations should pass
+    And Gold layer GE expectations should pass
+
