@@ -1,0 +1,130 @@
+{
+  "expectations": [
+    {
+      "id": "dd56db5d-073f-495e-bfee-da58d6409de4",
+      "kwargs": {
+        "max_value": 100000,
+        "min_value": 1
+      },
+      "meta": {
+        "notes": "Bronze transactions must have data"
+      },
+      "type": "expect_table_row_count_to_be_between"
+    },
+    {
+      "id": "73f63fe6-261d-4c66-9649-9e5989a19108",
+      "kwargs": {
+        "column": "transaction_id"
+      },
+      "meta": {
+        "notes": "transaction_id must never be null"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0d78bc96-121e-4a5a-a13a-295e9da73858",
+      "kwargs": {
+        "column": "dq_amount_flag"
+      },
+      "meta": {
+        "notes": "Amount DQ flag must be assigned to every record"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "88062c00-fd80-4540-92c4-ab1e30e3b489",
+      "kwargs": {
+        "column": "dq_currency_flag"
+      },
+      "meta": {
+        "notes": "Currency DQ flag must be assigned to every record"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ab04f4bf-c322-4946-81b0-626c2ab632c3",
+      "kwargs": {
+        "column": "dq_date_flag"
+      },
+      "meta": {
+        "notes": "Date DQ flag must be assigned to every record"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b2e41976-be6f-4315-af58-5589302ab65f",
+      "kwargs": {
+        "column": "dq_status_flag"
+      },
+      "meta": {
+        "notes": "Status DQ flag must be assigned to every record"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6a87cbf8-4e7c-454e-9a90-11ba5b43f5d3",
+      "kwargs": {
+        "column": "dq_amount_flag",
+        "value_set": [
+          "OK",
+          "MISSING_AMOUNT",
+          "NEGATIVE_AMOUNT",
+          "AMOUNT_TOO_LARGE"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid amount DQ flag values allowed"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "4b22e91f-6517-4949-ac2e-95fd42f088be",
+      "kwargs": {
+        "column": "dq_currency_flag",
+        "value_set": [
+          "OK",
+          "MISSING_CURRENCY",
+          "INVALID_CURRENCY"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid currency DQ flag values allowed"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "4d6a21d9-495b-44fe-af0f-423deb0a7374",
+      "kwargs": {
+        "column": "dq_date_flag",
+        "value_set": [
+          "OK",
+          "FUTURE_DATE"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid date DQ flag values allowed"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "37fc8590-dbec-49b2-bd8c-9634b1bbd04c",
+      "kwargs": {
+        "column": "dq_status_flag",
+        "value_set": [
+          "OK",
+          "INVALID_STATUS"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid status DQ flag values allowed"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    }
+  ],
+  "id": "11dc1f88-13a1-4f63-a648-ddc391a5ffde",
+  "meta": {
+    "great_expectations_version": "1.4.1"
+  },
+  "name": "bronze_transactions_suite",
+  "notes": null
+}

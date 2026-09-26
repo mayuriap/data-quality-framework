@@ -1,0 +1,88 @@
+{
+  "expectation_suite_name": "silver_transactions_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "min_value": 1,
+        "max_value": {
+          "$PARAMETER": "bronze_transaction_count"
+        }
+      },
+      "meta": {
+        "notes": "Silver must have equal or fewer records than Bronze"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "transaction_id"
+      },
+      "meta": {
+        "notes": "transaction_id must never be null in Silver"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "amount"
+      },
+      "meta": {
+        "notes": "amount must never be null in Silver"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "currency"
+      },
+      "meta": {
+        "notes": "currency must never be null in Silver"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {
+        "notes": "status must never be null in Silver"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "amount",
+        "min_value": 0.01,
+        "max_value": 999999.99
+      },
+      "meta": {
+        "notes": "Amount must be positive and within valid range in Silver"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "currency",
+        "value_set": ["GBP", "USD", "EUR", "JPY", "CHF"]
+      },
+      "meta": {
+        "notes": "Only valid currencies allowed in Silver"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "status",
+        "value_set": ["COMPLETED", "PENDING", "FAILED"]
+      },
+      "meta": {
+        "notes": "Only valid statuses allowed in Silver"
+      }
+    }
+  ],
+  "meta": {
+    "great_expectations_version": "1.4.1",
+    "description": "Silver layer transaction expectations. Strict — only clean records. Zero tolerance for nulls, negative amounts or invalid currencies."
+  }
+}

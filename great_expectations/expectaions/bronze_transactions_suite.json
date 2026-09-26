@@ -1,0 +1,104 @@
+{
+  "expectation_suite_name": "bronze_transactions_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "min_value": 1,
+        "max_value": 100000
+      },
+      "meta": {
+        "notes": "Bronze transactions must have data"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "transaction_id"
+      },
+      "meta": {
+        "notes": "transaction_id must never be null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "dq_amount_flag"
+      },
+      "meta": {
+        "notes": "Amount DQ flag must be assigned to every record"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "dq_currency_flag"
+      },
+      "meta": {
+        "notes": "Currency DQ flag must be assigned to every record"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "dq_date_flag"
+      },
+      "meta": {
+        "notes": "Date DQ flag must be assigned to every record"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "dq_status_flag"
+      },
+      "meta": {
+        "notes": "Status DQ flag must be assigned to every record"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "dq_amount_flag",
+        "value_set": ["OK", "MISSING_AMOUNT", "NEGATIVE_AMOUNT", "AMOUNT_TOO_LARGE"]
+      },
+      "meta": {
+        "notes": "Only valid amount DQ flag values allowed"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "dq_currency_flag",
+        "value_set": ["OK", "MISSING_CURRENCY", "INVALID_CURRENCY"]
+      },
+      "meta": {
+        "notes": "Only valid currency DQ flag values allowed"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "dq_date_flag",
+        "value_set": ["OK", "FUTURE_DATE"]
+      },
+      "meta": {
+        "notes": "Only valid date DQ flag values allowed"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "dq_status_flag",
+        "value_set": ["OK", "INVALID_STATUS"]
+      },
+      "meta": {
+        "notes": "Only valid status DQ flag values allowed"
+      }
+    }
+  ],
+  "meta": {
+    "great_expectations_version": "1.4.1",
+    "description": "Bronze layer transaction data quality expectations. Lenient — all records kept including bad ones with DQ flags."
+  }
+}

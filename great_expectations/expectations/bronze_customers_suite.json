@@ -1,0 +1,105 @@
+{
+  "expectations": [
+    {
+      "id": "9fb47eb0-f4d7-4f9b-af8b-e69df301fba7",
+      "kwargs": {
+        "max_value": 10000,
+        "min_value": 1
+      },
+      "meta": {
+        "notes": "Bronze must have data \u00e2\u20ac\u201d between 1 and 10000 rows"
+      },
+      "type": "expect_table_row_count_to_be_between"
+    },
+    {
+      "id": "4b30f670-e77b-41a5-85cc-832fc6cdc309",
+      "kwargs": {
+        "column": "customer_id"
+      },
+      "meta": {
+        "notes": "customer_id must never be null"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "eb54519c-d777-47f1-86b3-6c5b7fabec16",
+      "kwargs": {
+        "column": "dq_email_flag"
+      },
+      "meta": {
+        "notes": "DQ flag must be assigned to every record"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6103eb23-ed1e-401d-9301-3551d0459993",
+      "kwargs": {
+        "column": "dq_name_flag"
+      },
+      "meta": {
+        "notes": "DQ flag must be assigned to every record"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d5a52aaa-161a-4bb4-a67d-1077c190a82d",
+      "kwargs": {
+        "column": "dq_phone_flag"
+      },
+      "meta": {
+        "notes": "DQ flag must be assigned to every record"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0553c9a5-6f1d-47ca-b677-4d682c7a547f",
+      "kwargs": {
+        "column": "dq_email_flag",
+        "value_set": [
+          "OK",
+          "MISSING_EMAIL",
+          "INVALID_EMAIL"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid DQ flag values allowed"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "d96a6c5c-5bd5-452b-aadb-e6708d2829c7",
+      "kwargs": {
+        "column": "dq_name_flag",
+        "value_set": [
+          "OK",
+          "MISSING_NAME"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid DQ flag values allowed"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "f4ce27a5-8f53-4781-bab4-72ec8bea4709",
+      "kwargs": {
+        "column": "dq_phone_flag",
+        "value_set": [
+          "OK",
+          "MISSING_PHONE",
+          "INVALID_PHONE"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid DQ flag values allowed"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    }
+  ],
+  "id": "8cf9b3f6-887a-4d5e-9079-2f21b0be1bd6",
+  "meta": {
+    "great_expectations_version": "1.4.1"
+  },
+  "name": "bronze_customers_suite",
+  "notes": null
+}

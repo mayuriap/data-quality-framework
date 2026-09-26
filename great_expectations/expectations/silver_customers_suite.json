@@ -1,0 +1,97 @@
+{
+  "expectations": [
+    {
+      "id": "4556432e-c54f-4f09-b869-ad19cd6aa18b",
+      "kwargs": {
+        "max_value": 99,
+        "min_value": 1
+      },
+      "meta": {
+        "notes": "Silver must have fewer records than Bronze \u00e2\u20ac\u201d bad records removed"
+      },
+      "type": "expect_table_row_count_to_be_between"
+    },
+    {
+      "id": "8f63d553-13e0-4805-9e5e-10886e3f7bd2",
+      "kwargs": {
+        "column": "customer_id"
+      },
+      "meta": {
+        "notes": "customer_id must never be null in Silver"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ba096687-6624-4f92-87ef-ccdc391ecbb2",
+      "kwargs": {
+        "column": "email"
+      },
+      "meta": {
+        "notes": "email must never be null in Silver \u00e2\u20ac\u201d filtered at Bronze"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "71be5d94-7e1f-4e37-b9e6-2f77b2ebdc9e",
+      "kwargs": {
+        "column": "first_name"
+      },
+      "meta": {
+        "notes": "first_name must never be null in Silver"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cab13971-8158-4dcf-b7e3-7da9c118d5ec",
+      "kwargs": {
+        "column": "last_name"
+      },
+      "meta": {
+        "notes": "last_name must never be null in Silver"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "58b06f40-d09e-4628-b26c-5a971bef2000",
+      "kwargs": {
+        "column": "segment"
+      },
+      "meta": {
+        "notes": "segment must never be null in Silver"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "92d4e81d-e68d-4ad9-89c0-4ce8d856201c",
+      "kwargs": {
+        "column": "segment",
+        "value_set": [
+          "RETAIL",
+          "PREMIUM",
+          "BUSINESS"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid customer segments allowed in Silver"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "b9cabe57-fa6f-40c5-9753-551fc6b9f857",
+      "kwargs": {
+        "column": "email",
+        "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+      },
+      "meta": {
+        "notes": "Email must be valid format in Silver"
+      },
+      "type": "expect_column_values_to_match_regex"
+    }
+  ],
+  "id": "205bc8fb-d3b2-41d1-944a-8cb5637b5491",
+  "meta": {
+    "great_expectations_version": "1.4.1"
+  },
+  "name": "silver_customers_suite",
+  "notes": null
+}

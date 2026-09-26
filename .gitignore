@@ -10,3 +10,8 @@ target/
 dbt_project/target/
 dbt_project/dbt_packages/
 dbt_project/logs/
+great_expectations/gx/
+great_expectations/uncommitted/
+great_expectations/plugins/
+great_expectations/validation_definitions/
+great_expectations/.gitignore

@@ -1,0 +1,127 @@
+# Welcome to Great Expectations! Always know what to expect from your data.
+#
+# Here you can define datasources, batch kwargs generators, integrations and
+# more. This file is intended to be committed to your repo. For help with
+# configuration please:
+#   - Read our docs: https://docs.greatexpectations.io/docs/guides/connecting_to_your_data/connect_to_data_overview/#2-configure-your-datasource
+#   - Join our slack channel: http://greatexpectations.io/slack
+
+# config_version refers to the syntactic version of this config file, and is used in maintaining backwards compatibility
+# It is auto-generated and usually does not need to be changed.
+config_version: 4.0
+
+# This config file supports variable substitution which enables: 1) keeping
+# secrets out of source control & 2) environment-based configuration changes
+# such as staging vs prod.
+#
+# When GX encounters substitution syntax (like `my_key: ${my_value}` or
+# `my_key: $my_value`) in the great_expectations.yml file, it will attempt
+# to replace the value of `my_key` with the value from an environment
+# variable `my_value` or a corresponding key read from this config file,
+# which is defined through the `config_variables_file_path`.
+# Environment variables take precedence over variables defined here.
+#
+# Substitution values defined here can be a simple (non-nested) value,
+# nested value such as a dictionary, or an environment variable (i.e. ${ENV_VAR})
+#
+#
+# https://docs.greatexpectations.io/docs/guides/setup/configuring_data_contexts/how_to_configure_credentials
+
+
+config_variables_file_path: uncommitted/config_variables.yml
+
+# The plugins_directory will be added to your python path for custom modules
+# used to override and extend Great Expectations.
+plugins_directory: plugins/
+
+stores:
+# Stores are configurable places to store things like Expectations, Validations
+# Data Docs, and more. These are for advanced users only - most users can simply
+# leave this section alone.
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+
+  validation_results_store:
+    class_name: ValidationResultsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/validations/
+
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      suppress_store_backend_id: true
+      base_directory: checkpoints/
+
+  validation_definition_store:
+    class_name: ValidationDefinitionStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: validation_definitions/
+
+expectations_store_name: expectations_store
+validation_results_store_name: validation_results_store
+checkpoint_store_name: checkpoint_store
+
+data_docs_sites:
+  # Data Docs make it simple to visualize data quality in your project. These
+  # include Expectations, Validations & Profiles. The are built for all
+  # Datasources from JSON artifacts in the local repo including validations &
+  # profiles from the uncommitted directory. Read more at https://docs.greatexpectations.io/docs/terms/data_docs
+  local_site:
+    class_name: SiteBuilder
+    show_how_to_buttons: true
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/data_docs/local_site/
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+fluent_datasources:
+  dq_postgres:
+    type: postgres
+    id: da5b490a-c30d-40f7-a8bd-c01a9a3c8fc3
+    assets:
+      public_bronze_stg_customers_bronze_customers_suite:
+        type: table
+        id: 0e905a07-79bd-4389-be2c-183fee075ae3
+        batch_metadata: {}
+        table_name: stg_customers
+        schema_name: public_bronze
+      public_bronze_stg_transactions_bronze_transactions_suite:
+        type: table
+        id: 8b7e67db-5295-45d4-80bf-0dfb27195d38
+        batch_metadata: {}
+        table_name: stg_transactions
+        schema_name: public_bronze
+      public_silver_int_customers_silver_customers_suite:
+        type: table
+        id: ef1e807c-1382-49c3-b351-c0bb3f274917
+        batch_metadata: {}
+        table_name: int_customers
+        schema_name: public_silver
+      public_silver_int_transactions_silver_transactions_suite:
+        type: table
+        id: 7e855642-791f-4fb0-af13-671162847b50
+        batch_metadata: {}
+        table_name: int_transactions
+        schema_name: public_silver
+      public_gold_gold_daily_summary_gold_daily_suite:
+        type: table
+        id: edc24403-5479-4082-9530-bd8d8e9588f3
+        batch_metadata: {}
+        table_name: gold_daily_summary
+        schema_name: public_gold
+      public_gold_gold_customer_summary_gold_customer_suite:
+        type: table
+        id: a23092c9-0ba2-4005-b5cd-2d19602e64cc
+        batch_metadata: {}
+        table_name: gold_customer_summary
+        schema_name: public_gold
+    connection_string: 
+      postgresql://postgres:SimplePassword123@localhost:5432/dq_framework_test
+analytics_enabled:
+data_context_id: d7ad1ecc-b6d6-41f2-b43f-a29b3ff924ee

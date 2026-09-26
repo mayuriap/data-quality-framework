@@ -1,0 +1,107 @@
+{
+  "expectations": [
+    {
+      "id": "fcd7e6b9-2607-47df-9786-3c918ef71b65",
+      "kwargs": {
+        "max_value": {
+          "$PARAMETER": "bronze_transaction_count"
+        },
+        "min_value": 1
+      },
+      "meta": {
+        "notes": "Silver must have equal or fewer records than Bronze"
+      },
+      "type": "expect_table_row_count_to_be_between"
+    },
+    {
+      "id": "ae5b449a-9f5f-4ca5-a7c9-a263112c6b70",
+      "kwargs": {
+        "column": "transaction_id"
+      },
+      "meta": {
+        "notes": "transaction_id must never be null in Silver"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ddebd267-572f-4c41-b6e0-c11a46bc91a1",
+      "kwargs": {
+        "column": "amount"
+      },
+      "meta": {
+        "notes": "amount must never be null in Silver"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "17d461d5-b5fe-435c-8fef-9d7de31a6572",
+      "kwargs": {
+        "column": "currency"
+      },
+      "meta": {
+        "notes": "currency must never be null in Silver"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "56d7a87f-aa16-4ba3-904f-7c6a7e79a24f",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {
+        "notes": "status must never be null in Silver"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5a6997f8-2859-4a85-9af6-1a125496aa51",
+      "kwargs": {
+        "column": "amount",
+        "max_value": 999999.99,
+        "min_value": 0.01
+      },
+      "meta": {
+        "notes": "Amount must be positive and within valid range in Silver"
+      },
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "11903e0a-3791-41a9-88cd-ca6228def4ab",
+      "kwargs": {
+        "column": "currency",
+        "value_set": [
+          "GBP",
+          "USD",
+          "EUR",
+          "JPY",
+          "CHF"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid currencies allowed in Silver"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "bcebdfac-9ef2-4ded-b8e3-94d4fb3afad6",
+      "kwargs": {
+        "column": "status",
+        "value_set": [
+          "COMPLETED",
+          "PENDING",
+          "FAILED"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid statuses allowed in Silver"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    }
+  ],
+  "id": "6617c38f-aa47-44f5-86b9-0a72284f47d4",
+  "meta": {
+    "great_expectations_version": "1.4.1"
+  },
+  "name": "silver_transactions_suite",
+  "notes": null
+}

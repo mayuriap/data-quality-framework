@@ -1,0 +1,102 @@
+{
+  "expectations": [
+    {
+      "id": "632a18b4-399e-4c44-b01a-a34bae638c7e",
+      "kwargs": {
+        "max_value": {
+          "$PARAMETER": "silver_transaction_count"
+        },
+        "min_value": 1
+      },
+      "meta": {
+        "notes": "Gold daily summary must have fewer rows than Silver \u00e2\u20ac\u201d grouped by date and currency"
+      },
+      "type": "expect_table_row_count_to_be_between"
+    },
+    {
+      "id": "77498efb-ea8f-4857-9ad1-c20b037f6125",
+      "kwargs": {
+        "column": "transaction_date"
+      },
+      "meta": {
+        "notes": "transaction_date must never be null in Gold"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7a4a68df-3fc0-4f67-ad2c-9f45d7fbd931",
+      "kwargs": {
+        "column": "currency"
+      },
+      "meta": {
+        "notes": "currency must never be null in Gold"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e7a0527f-c152-4deb-b2fc-6d89bdab8085",
+      "kwargs": {
+        "column": "total_amount"
+      },
+      "meta": {
+        "notes": "total_amount must never be null in Gold"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0c2f4f74-1376-4947-acee-522c5aa2e366",
+      "kwargs": {
+        "column": "total_transactions"
+      },
+      "meta": {
+        "notes": "total_transactions must never be null in Gold"
+      },
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "79806dca-ebb1-4d75-be81-2b04a9fce40b",
+      "kwargs": {
+        "column": "currency",
+        "value_set": [
+          "GBP",
+          "USD",
+          "EUR",
+          "JPY",
+          "CHF"
+        ]
+      },
+      "meta": {
+        "notes": "Only valid currencies in Gold daily summary"
+      },
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "e2df5e8d-0d75-410e-9fc6-ca78f79f21f7",
+      "kwargs": {
+        "column": "total_amount",
+        "min_value": 0.01
+      },
+      "meta": {
+        "notes": "Total amount must always be positive in Gold"
+      },
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "48b3fa15-ef24-47fc-b0c6-dfe71c19e696",
+      "kwargs": {
+        "column": "total_transactions",
+        "min_value": 1.0
+      },
+      "meta": {
+        "notes": "Must have at least 1 transaction per row in Gold"
+      },
+      "type": "expect_column_values_to_be_between"
+    }
+  ],
+  "id": "7e4eed1f-afda-4984-ab78-2aa7a8815609",
+  "meta": {
+    "great_expectations_version": "1.4.1"
+  },
+  "name": "gold_daily_suite",
+  "notes": null
+}
