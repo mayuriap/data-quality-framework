@@ -13,7 +13,7 @@ Usage:
 
 import sys
 import os
-import json 
+import json
 sys.path.insert(0, os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))))
 
@@ -35,6 +35,28 @@ class GEValidator:
 
     # Path to great_expectations folder
     GE_ROOT = Path(__file__).parent.parent / "great_expectations"
+
+    # ------------------------------------------------------------------ #
+    # Add a new table here — no other code changes needed                  #
+    # ------------------------------------------------------------------ #
+    VALIDATIONS = [
+        ("bronze_customers",      "public_bronze", "stg_customers",         "bronze_customers_suite"),
+        ("bronze_transactions",   "public_bronze", "stg_transactions",      "bronze_transactions_suite"),
+        ("silver_customers",      "public_silver", "int_customers",         "silver_customers_suite"),
+        ("silver_transactions",   "public_silver", "int_transactions",      "silver_transactions_suite"),
+        ("gold_daily_summary",    "public_gold",   "gold_daily_summary",    "gold_daily_suite"),
+        ("gold_customer_summary", "public_gold",   "gold_customer_summary", "gold_customer_suite"),
+    ]
+
+    # ------------------------------------------------------------------ #
+    # Add a new dynamic parameter here — no other code changes needed      #
+    # ------------------------------------------------------------------ #
+    PARAMETER_QUERIES = {
+        "bronze_customer_count":    "SELECT COUNT(*) AS cnt FROM public_bronze.stg_customers",
+        "bronze_transaction_count": "SELECT COUNT(*) AS cnt FROM public_bronze.stg_transactions",
+        "silver_customer_count":    "SELECT COUNT(*) AS cnt FROM public_silver.int_customers",
+        "silver_transaction_count": "SELECT COUNT(*) AS cnt FROM public_silver.int_transactions",
+    }
 
     def __init__(self):
         self.db_url  = config.get_db_url()
@@ -75,48 +97,32 @@ class GEValidator:
         """
         params = {}
 
-        queries = {
-            "bronze_customer_count":    "SELECT COUNT(*) AS cnt FROM public_bronze.stg_customers",
-            "bronze_transaction_count": "SELECT COUNT(*) AS cnt FROM public_bronze.stg_transactions",
-            "silver_customer_count":    "SELECT COUNT(*) AS cnt FROM public_silver.int_customers",
-            "silver_transaction_count": "SELECT COUNT(*) AS cnt FROM public_silver.int_transactions",
-        }
-
-        for param_name, sql in queries.items():
-            result       = db.execute_query(sql)
+        for param_name, sql in self.PARAMETER_QUERIES.items():
+            result             = db.execute_query(sql)
             params[param_name] = result[0]["cnt"]
             logger.info(f"Parameter {param_name} = {params[param_name]}")
 
         return params
-    
+
     def _load_suites(self):
         """Load all expectation suites from JSON files."""
-        suite_files = [
-            "bronze_customers_suite",
-            "bronze_transactions_suite",
-            "silver_customers_suite",
-            "silver_transactions_suite",
-            "gold_daily_suite",
-            "gold_customer_suite"
-        ]
-    
-        for suite_name in suite_files:
+        for _, _, _, suite_name in self.VALIDATIONS:
             suite_path = self.GE_ROOT / "expectations" / f"{suite_name}.json"
-        
+
             with open(suite_path, "r") as f:
                 suite_data = json.load(f)
-                
+
             # Normalise — handle GE 1.4.1 inconsistency
             # GE writes "expectation_type" but reads "type"
             for exp in suite_data.get("expectations", []):
                 exp.pop("id", None)
                 if "expectation_type" in exp and "type" not in exp:
                     exp["type"] = exp.pop("expectation_type")
-        
-            suite = self.context.suites.add_or_update(
+
+            self.context.suites.add_or_update(
                 ge.ExpectationSuite(
-                   name         = suite_name,
-                   expectations = suite_data.get("expectations", [])
+                    name         = suite_name,
+                    expectations = suite_data.get("expectations", [])
                 )
             )
             logger.info(f"Loaded suite: {suite_name}")
@@ -150,7 +156,7 @@ class GEValidator:
                 name        = f"{schema}_{table}_{suite_name}",
                 table_name  = table,
                 schema_name = schema
-        )
+            )
 
         # Build batch request
         batch_request = asset.build_batch_request()
@@ -159,14 +165,12 @@ class GEValidator:
         validator = self.context.get_validator(
             batch_request          = batch_request,
             expectation_suite_name = suite_name,
-            
         )
 
         # Run validation with dynamic parameters
         results = validator.validate(
             suite_parameters = self.params
-        )    
-        
+        )
 
         passed = results.statistics["successful_expectations"]
         total  = results.statistics["evaluated_expectations"]
@@ -192,60 +196,6 @@ class GEValidator:
             }
         }
 
-    # ── Bronze validations ────────────────────────────────────────
-
-    def validate_bronze_customers(self) -> dict:
-        """Validate Bronze customer layer."""
-        return self._validate_table(
-            schema     = "public_bronze",
-            table      = "stg_customers",
-            suite_name = "bronze_customers_suite"
-        )
-
-    def validate_bronze_transactions(self) -> dict:
-        """Validate Bronze transaction layer."""
-        return self._validate_table(
-            schema     = "public_bronze",
-            table      = "stg_transactions",
-            suite_name = "bronze_transactions_suite"
-        )
-
-    # ── Silver validations ────────────────────────────────────────
-
-    def validate_silver_customers(self) -> dict:
-        """Validate Silver customer layer."""
-        return self._validate_table(
-            schema     = "public_silver",
-            table      = "int_customers",
-            suite_name = "silver_customers_suite"
-        )
-
-    def validate_silver_transactions(self) -> dict:
-        """Validate Silver transaction layer."""
-        return self._validate_table(
-            schema     = "public_silver",
-            table      = "int_transactions",
-            suite_name = "silver_transactions_suite"
-        )
-
-    # ── Gold validations ──────────────────────────────────────────
-
-    def validate_gold_daily_summary(self) -> dict:
-        """Validate Gold daily summary."""
-        return self._validate_table(
-            schema     = "public_gold",
-            table      = "gold_daily_summary",
-            suite_name = "gold_daily_suite"
-        )
-
-    def validate_gold_customer_summary(self) -> dict:
-        """Validate Gold customer summary."""
-        return self._validate_table(
-            schema     = "public_gold",
-            table      = "gold_customer_summary",
-            suite_name = "gold_customer_suite"
-        )
-
     # ── Run all ───────────────────────────────────────────────────
 
     def validate_all(self) -> dict:
@@ -253,21 +203,12 @@ class GEValidator:
         Run all GE validations across all layers.
         Returns combined results.
         """
-        validations = [
-            ("bronze_customers",      self.validate_bronze_customers),
-            ("bronze_transactions",   self.validate_bronze_transactions),
-            ("silver_customers",      self.validate_silver_customers),
-            ("silver_transactions",   self.validate_silver_transactions),
-            ("gold_daily_summary",    self.validate_gold_daily_summary),
-            ("gold_customer_summary", self.validate_gold_customer_summary),
-        ]
-
         results    = {}
         all_passed = True
 
-        for name, validation_fn in validations:
+        for name, schema, table, suite_name in self.VALIDATIONS:
             try:
-                result       = validation_fn()
+                result        = self._validate_table(schema, table, suite_name)
                 results[name] = result
                 if not result["success"]:
                     all_passed = False

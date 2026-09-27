@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "cf55ded3-5538-4f08-bf2c-85196e818246",
+      "id": "ba1deaff-97a1-43f4-9ccc-1188e73921a4",
       "kwargs": {
         "max_value": {
           "$PARAMETER": "silver_customer_count"
@@ -14,7 +14,7 @@
       "type": "expect_table_row_count_to_be_between"
     },
     {
-      "id": "f7830df9-c07e-410d-9536-09b551f1f735",
+      "id": "0f42d321-3782-459b-b795-6336bb671e10",
       "kwargs": {
         "column": "customer_id"
       },
@@ -24,7 +24,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9cf9cf38-468a-4252-bb25-8b0aa9fc1915",
+      "id": "70a33dd1-b908-41fe-ac96-c9aa1ae41dcd",
       "kwargs": {
         "column": "total_transactions"
       },
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a0e2a2f3-9a42-4070-abf8-c97ba53a105a",
+      "id": "b2e31b7c-3c00-4d1d-927b-86aa331212a0",
       "kwargs": {
         "column": "total_transactions",
         "min_value": 0.0
@@ -45,7 +45,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "65aae867-a701-4dfc-8c8a-eb8542d5aac3",
+      "id": "79faa0d7-e7f0-4396-8960-e14fc41ed165",
       "kwargs": {
         "column": "total_spend",
         "min_value": 0.0
@@ -56,7 +56,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "e40adf8b-5a66-45be-a827-46db3915c762",
+      "id": "6c60d235-43db-4a7f-af3d-854e2ae61168",
       "kwargs": {
         "column": "customer_id"
       },

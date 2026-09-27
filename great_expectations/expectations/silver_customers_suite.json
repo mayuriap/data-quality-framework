@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "676c2625-bdb0-447c-94bf-63d570b50fdc",
+      "id": "4a381936-0605-4040-9a0a-278ea1688816",
       "kwargs": {
         "max_value": {
           "$PARAMETER": "bronze_customer_count"
@@ -14,7 +14,7 @@
       "type": "expect_table_row_count_to_be_between"
     },
     {
-      "id": "3af6bd4e-f7b2-4a61-813a-d865d3f5e9db",
+      "id": "c27247c4-78e8-4687-ab6a-7f5391325792",
       "kwargs": {
         "column": "customer_id"
       },
@@ -24,7 +24,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "794c825b-c200-4498-9b89-a929a68e4c83",
+      "id": "6db03043-5613-4e38-b9d7-c7f85fa4855e",
       "kwargs": {
         "column": "email"
       },
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4d50af53-13df-4d50-976c-c1f5f55eb09b",
+      "id": "beda062b-ffb7-4ca0-a0b7-bcb81fc676ab",
       "kwargs": {
         "column": "first_name"
       },
@@ -44,7 +44,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "155f25e8-6e76-44fa-b2aa-e60eaba8a751",
+      "id": "e28af7cb-7f44-4da5-9ca2-3a666c61a46c",
       "kwargs": {
         "column": "last_name"
       },
@@ -54,7 +54,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "460883c0-2921-43c7-b202-f9717dd57f38",
+      "id": "e8e8b89a-b694-434d-9189-fd77a480e332",
       "kwargs": {
         "column": "segment"
       },
@@ -64,7 +64,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "aa8c5f19-7904-41c8-b971-57af270fa1ca",
+      "id": "0a1708fe-cb3a-44a5-96e0-8eb36ee34a2d",
       "kwargs": {
         "column": "segment",
         "value_set": [
@@ -79,7 +79,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "5a53f562-7670-4489-bccf-537c25a8a511",
+      "id": "931e9901-f4f2-4d16-b880-fe96119abe18",
       "kwargs": {
         "column": "email",
         "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
@@ -90,7 +90,7 @@
       "type": "expect_column_values_to_match_regex"
     },
     {
-      "id": "26914cca-46d4-4188-8161-f3a94258001c",
+      "id": "cb9d2d9d-2d67-4655-ac95-222d7bcf7747",
       "kwargs": {
         "column": "customer_id"
       },

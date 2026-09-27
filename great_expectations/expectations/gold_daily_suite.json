@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "1994b157-ff0d-41aa-9a50-f31930e73086",
+      "id": "a7934ff5-676d-44fa-bcbe-7f0396292d9b",
       "kwargs": {
         "max_value": {
           "$PARAMETER": "silver_transaction_count"
@@ -14,7 +14,7 @@
       "type": "expect_table_row_count_to_be_between"
     },
     {
-      "id": "fee9fd95-0494-428b-b71c-cb5e5bd426a4",
+      "id": "3f722127-155e-48d5-8f18-c62f3359b426",
       "kwargs": {
         "column": "transaction_date"
       },
@@ -24,7 +24,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2cf999c6-c993-4df1-9b10-8f59a05644c4",
+      "id": "1ba6a448-23c0-4eea-8b0f-b3cff25ccb4a",
       "kwargs": {
         "column": "currency"
       },
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4c77a56f-e3b1-4f5c-82ed-95f560aa8366",
+      "id": "adf166e0-1f84-48b6-9fe6-39bcb51864f2",
       "kwargs": {
         "column": "total_amount"
       },
@@ -44,7 +44,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "24422ad9-6a4f-456b-8de4-dd447e0c629f",
+      "id": "c85bc2c8-d1af-4bb7-8be3-64a282ae323a",
       "kwargs": {
         "column": "total_transactions"
       },
@@ -54,7 +54,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0287fe43-cf0f-44d4-9895-4b620e4f5beb",
+      "id": "4f3114dc-85fe-4829-9ec1-636356f2b0a8",
       "kwargs": {
         "column": "currency",
         "value_set": [
@@ -71,7 +71,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "ae455991-2176-413f-abe3-8a4fd345bafb",
+      "id": "d7e7d262-4637-4c7d-979c-e3ac81c7f5e3",
       "kwargs": {
         "column": "total_amount",
         "min_value": 0.01
@@ -82,7 +82,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "93dfad33-e98d-4aff-bab6-007e3bbd5ae2",
+      "id": "b21f1b12-dad4-4e24-812c-32af6a3c78af",
       "kwargs": {
         "column": "total_transactions",
         "min_value": 1.0
