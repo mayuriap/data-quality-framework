@@ -30,31 +30,25 @@ def run_dbt_tests() -> dict:
     )
     output = result.stdout + result.stderr
 
-    # Parse dbt output
-    passed  = 0
-    failed  = 0
-    total   = 0
-    details = []
+    passed = 0
+    failed = 0
+    total  = 0
 
+    # Parse the Done. line: PASS=48 WARN=0 ERROR=4 SKIP=0 NO-OP=0 REUSED=0 TOTAL=52
     for line in output.split("\n"):
-        if "PASS" in line and "of" in line:
-            passed += 1
-            total  += 1
-            details.append({"status": "PASS", "name": line.strip()})
-        elif "FAIL" in line and "of" in line:
-            failed += 1
-            total  += 1
-            details.append({"status": "FAIL", "name": line.strip()})
-        elif "ERROR" in line and "of" in line:
-            failed += 1
-            total  += 1
-            details.append({"status": "ERROR", "name": line.strip()})
+        if "Done." in line and "PASS=" in line:
+            for part in line.split():
+                if part.startswith("PASS="):
+                    passed = int(part.split("=")[1])
+                elif part.startswith("ERROR="):
+                    failed = int(part.split("=")[1])
+                elif part.startswith("TOTAL="):
+                    total = int(part.split("=")[1])
 
     return {
         "passed":  passed,
         "failed":  failed,
         "total":   total,
-        "details": details,
         "output":  output
     }
 
@@ -92,6 +86,8 @@ def run_behave_tests() -> dict:
         for feature in behave_data:
             for scenario in feature.get("elements", []):
                 name   = scenario.get("name", "")
+                if not name:          # ← add this check
+                    continue          # ← skip Background
                 steps  = scenario.get("steps", [])
                 status = "PASS"
 
@@ -118,7 +114,7 @@ def run_behave_tests() -> dict:
             if "steps passed" in line:
                 # Format: "54 steps passed, 0 failed, 0 skipped"
                 try:
-                    parts        = line.strip().split()
+                    parts =line.strip().split()
                     steps_passed = int(parts[0])
                     # Find failed count
                     for i, part in enumerate(parts):

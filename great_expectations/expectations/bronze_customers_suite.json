@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "9fb47eb0-f4d7-4f9b-af8b-e69df301fba7",
+      "id": "17dd6fd7-0a22-476a-827a-54544e46d200",
       "kwargs": {
         "max_value": 10000,
         "min_value": 1
@@ -12,7 +12,7 @@
       "type": "expect_table_row_count_to_be_between"
     },
     {
-      "id": "4b30f670-e77b-41a5-85cc-832fc6cdc309",
+      "id": "76272a68-14b3-4511-b078-f9cc41e41374",
       "kwargs": {
         "column": "customer_id"
       },
@@ -22,7 +22,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "eb54519c-d777-47f1-86b3-6c5b7fabec16",
+      "id": "3d4cf358-05b7-42ff-8988-10f7ac9d0f71",
       "kwargs": {
         "column": "dq_email_flag"
       },
@@ -32,7 +32,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "6103eb23-ed1e-401d-9301-3551d0459993",
+      "id": "48a1be4e-db0a-407f-8cb5-68caa79babdc",
       "kwargs": {
         "column": "dq_name_flag"
       },
@@ -42,7 +42,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d5a52aaa-161a-4bb4-a67d-1077c190a82d",
+      "id": "59ae7691-0af5-4b6f-b0df-d41f2a6a3aad",
       "kwargs": {
         "column": "dq_phone_flag"
       },
@@ -52,7 +52,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0553c9a5-6f1d-47ca-b677-4d682c7a547f",
+      "id": "f5365c35-e0e4-413f-acdd-6ebc1921e79a",
       "kwargs": {
         "column": "dq_email_flag",
         "value_set": [
@@ -67,7 +67,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "d96a6c5c-5bd5-452b-aadb-e6708d2829c7",
+      "id": "b3049f98-1a7b-44b7-a757-78ec5019a851",
       "kwargs": {
         "column": "dq_name_flag",
         "value_set": [
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "f4ce27a5-8f53-4781-bab4-72ec8bea4709",
+      "id": "ca1a9b94-3dfb-430f-a0a7-19a8b9b310fb",
       "kwargs": {
         "column": "dq_phone_flag",
         "value_set": [
@@ -96,7 +96,7 @@
       "type": "expect_column_values_to_be_in_set"
     }
   ],
-  "id": "8cf9b3f6-887a-4d5e-9079-2f21b0be1bd6",
+  "id": "ea977d87-f27a-459b-8c4c-f8ee1c6b7773",
   "meta": {
     "great_expectations_version": "1.4.1"
   },

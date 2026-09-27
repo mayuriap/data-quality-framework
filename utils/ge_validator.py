@@ -105,6 +105,13 @@ class GEValidator:
         
             with open(suite_path, "r") as f:
                 suite_data = json.load(f)
+                
+            # Normalise — handle GE 1.4.1 inconsistency
+            # GE writes "expectation_type" but reads "type"
+            for exp in suite_data.get("expectations", []):
+                exp.pop("id", None)
+                if "expectation_type" in exp and "type" not in exp:
+                    exp["type"] = exp.pop("expectation_type")
         
             suite = self.context.suites.add_or_update(
                 ge.ExpectationSuite(

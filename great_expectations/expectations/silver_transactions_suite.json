@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "fcd7e6b9-2607-47df-9786-3c918ef71b65",
+      "id": "a45d92c8-6ddc-459d-96aa-147d552e80f6",
       "kwargs": {
         "max_value": {
           "$PARAMETER": "bronze_transaction_count"
@@ -14,7 +14,7 @@
       "type": "expect_table_row_count_to_be_between"
     },
     {
-      "id": "ae5b449a-9f5f-4ca5-a7c9-a263112c6b70",
+      "id": "7504b82f-17e0-4dfa-a0d4-efd085e38cbc",
       "kwargs": {
         "column": "transaction_id"
       },
@@ -24,7 +24,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ddebd267-572f-4c41-b6e0-c11a46bc91a1",
+      "id": "cd13789b-fb20-4ab4-8f80-0cf802098acd",
       "kwargs": {
         "column": "amount"
       },
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "17d461d5-b5fe-435c-8fef-9d7de31a6572",
+      "id": "c28a05de-2c2c-45d7-a7ed-3dfcbfc1b801",
       "kwargs": {
         "column": "currency"
       },
@@ -44,7 +44,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "56d7a87f-aa16-4ba3-904f-7c6a7e79a24f",
+      "id": "fc2f6e53-2ee9-4eea-9a9b-2ef31cb1d0eb",
       "kwargs": {
         "column": "status"
       },
@@ -54,7 +54,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "5a6997f8-2859-4a85-9af6-1a125496aa51",
+      "id": "a77fe2d9-28e3-48da-9cf2-8773a99bf117",
       "kwargs": {
         "column": "amount",
         "max_value": 999999.99,
@@ -66,7 +66,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "11903e0a-3791-41a9-88cd-ca6228def4ab",
+      "id": "70c1ef28-e138-49c0-bb58-69fa4c247e43",
       "kwargs": {
         "column": "currency",
         "value_set": [
@@ -83,7 +83,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "bcebdfac-9ef2-4ded-b8e3-94d4fb3afad6",
+      "id": "3f2f73b9-162a-4b9e-af31-89ed32492b5f",
       "kwargs": {
         "column": "status",
         "value_set": [
@@ -96,9 +96,19 @@
         "notes": "Only valid statuses allowed in Silver"
       },
       "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "758c500c-bfa2-413c-adee-28d4f12cd9e2",
+      "kwargs": {
+        "column": "transaction_id"
+      },
+      "meta": {
+        "notes": "transaction_id must be unique in Silver \u00e2\u20ac\u201d no duplicate transactions allowed"
+      },
+      "type": "expect_column_values_to_be_unique"
     }
   ],
-  "id": "6617c38f-aa47-44f5-86b9-0a72284f47d4",
+  "id": "41e63995-9952-4c8e-b28a-c98e76079c5f",
   "meta": {
     "great_expectations_version": "1.4.1"
   },

@@ -260,62 +260,16 @@ def step_bronze_tests_pass(context):
 
 @then('all Silver schema tests should pass')
 def step_silver_tests_pass(context):
-    if context.dbt_result.returncode != 0:
-        output = context.dbt_result.stdout
-
-        known_failures = [
-            "source_unique_silver_int_customers_customer_id",
-            "source_unique_silver_int_transactions_transaction_id"
-        ]
-
-        unexpected = []
-        for line in output.split("\n"):
-            stripped = line.strip()
-            if stripped.startswith("[ERROR]") or stripped.startswith("FAIL"):
-                is_known = any(known in stripped for known in known_failures)
-                if not is_known:
-                    unexpected.append(stripped)
-
-        if unexpected:
-            assert False, \
-                f"Unexpected Silver failures:\n{chr(10).join(unexpected)}"
-        else:
-            logger.warning(
-                "KNOWN FINDING: Silver duplicate ID failures — "
-                "injected test data. "
-                "Recommendation: Add deduplication to ETL pipeline."
-            )
-    else:
-        logger.info("All Silver schema tests passed")
+     assert context.dbt_result.returncode == 0, \
+        f"Silver schema tests failed:\n{context.dbt_result.stdout}"
+     logger.info("All Silver schema tests passed")
 
 
 @then('all Gold schema tests should pass')
 def step_gold_tests_pass(context):
-    if context.dbt_result.returncode != 0:
-        output = context.dbt_result.stdout
-
-        known_failures = [
-            "source_unique_gold_gold_customer_summary_customer_id"
-        ]
-
-        unexpected = []
-        for line in output.split("\n"):
-            stripped = line.strip()
-            if stripped.startswith("[ERROR]") or stripped.startswith("FAIL"):
-                is_known = any(known in stripped for known in known_failures)
-                if not is_known:
-                    unexpected.append(stripped)
-
-        if unexpected:
-            assert False, \
-                f"Unexpected Gold failures:\n{chr(10).join(unexpected)}"
-        else:
-            logger.warning(
-                "KNOWN FINDING: Gold duplicate customer ID — "
-                "injected test data."
-            )
-    else:
-        logger.info("All Gold schema tests passed")
+     assert context.dbt_result.returncode == 0, \
+        f"Gold schema tests failed:\n{context.dbt_result.stdout}"
+     logger.info("All Gold schema tests passed")
 
 
 @then('Bronze customer count should match raw customer count')
@@ -358,12 +312,10 @@ def step_no_bad_customers_silver(context):
 def step_no_bad_transactions_silver(context):
     """Known finding — bad transactions in Silver due to duplicates."""
     """Verify custom intermediate test passed for transactions."""
-    if context.transaction_result.returncode != 0:
-        logger.warning(
-            "KNOWN FINDING: Bad transactions in Silver "
-            "due to duplicate IDs — documented finding."
-        )
-    assert True
+    assert context.transaction_result.returncode == 0, \
+        "Bad transactions found in Silver — duplicate IDs bypassed filter. " \
+        "Recommendation: Add deduplication to Silver models."
+    logger.info("No bad transaction records in Silver")
 
 
 @then('Gold totals should match Silver source totals')

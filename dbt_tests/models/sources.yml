@@ -97,6 +97,7 @@ sources:
               - dbt_utils.accepted_range:
                   min_value: 0.01
                   max_value: 999999.99
+              - not_negative
           - name: currency
             tests:
               - not_null
@@ -110,12 +111,19 @@ sources:
           - name: transaction_date
             tests:
               - not_null
+              - no_future_date
           - name: customer_id
             tests:
               - not_null
               - relationships:
                   to: source('silver', 'int_customers')
                   field: customer_id
+          - name: settlement_date
+            tests:
+              - not_null
+              - settlement_after_trade:
+                 trade_date_col: transaction_date
+          
 
   - name: gold
     schema: public_gold

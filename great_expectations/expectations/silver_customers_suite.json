@@ -1,9 +1,11 @@
 {
   "expectations": [
     {
-      "id": "4556432e-c54f-4f09-b869-ad19cd6aa18b",
+      "id": "0e4c6f1c-81f5-45b7-abc3-e0a17ffda76c",
       "kwargs": {
-        "max_value": 99,
+        "max_value": {
+          "$PARAMETER": "bronze_customer_count"
+        },
         "min_value": 1
       },
       "meta": {
@@ -12,7 +14,7 @@
       "type": "expect_table_row_count_to_be_between"
     },
     {
-      "id": "8f63d553-13e0-4805-9e5e-10886e3f7bd2",
+      "id": "2ec774b8-0863-45d7-b1ec-fcdf811db026",
       "kwargs": {
         "column": "customer_id"
       },
@@ -22,7 +24,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ba096687-6624-4f92-87ef-ccdc391ecbb2",
+      "id": "9feb1978-ad0d-4726-ba2b-6bfcf8c55fc6",
       "kwargs": {
         "column": "email"
       },
@@ -32,7 +34,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "71be5d94-7e1f-4e37-b9e6-2f77b2ebdc9e",
+      "id": "bea59e12-30f1-44dd-b009-1aef13ec4a18",
       "kwargs": {
         "column": "first_name"
       },
@@ -42,7 +44,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "cab13971-8158-4dcf-b7e3-7da9c118d5ec",
+      "id": "d70477d1-d815-4f43-98bc-4a36049206ff",
       "kwargs": {
         "column": "last_name"
       },
@@ -52,7 +54,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "58b06f40-d09e-4628-b26c-5a971bef2000",
+      "id": "1fa6bdc3-0007-40de-aaff-bb6ced73bd41",
       "kwargs": {
         "column": "segment"
       },
@@ -62,7 +64,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "92d4e81d-e68d-4ad9-89c0-4ce8d856201c",
+      "id": "0968f2d3-6ea4-486a-a95b-0ca61fca2e4f",
       "kwargs": {
         "column": "segment",
         "value_set": [
@@ -77,7 +79,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "b9cabe57-fa6f-40c5-9753-551fc6b9f857",
+      "id": "4a9661b7-71ab-41c4-a35f-3a8a5e7ef038",
       "kwargs": {
         "column": "email",
         "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
@@ -86,9 +88,19 @@
         "notes": "Email must be valid format in Silver"
       },
       "type": "expect_column_values_to_match_regex"
+    },
+    {
+      "id": "a9fbd882-42c6-46ac-ad17-8bedabe01235",
+      "kwargs": {
+        "column": "customer_id"
+      },
+      "meta": {
+        "notes": "customer_id must be unique in Silver \u00e2\u20ac\u201d no duplicate customers allowed"
+      },
+      "type": "expect_column_values_to_be_unique"
     }
   ],
-  "id": "205bc8fb-d3b2-41d1-944a-8cb5637b5491",
+  "id": "02a35b36-dcb7-41ea-8fb7-b2786438a4a4",
   "meta": {
     "great_expectations_version": "1.4.1"
   },
