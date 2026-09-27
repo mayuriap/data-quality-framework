@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "a45d92c8-6ddc-459d-96aa-147d552e80f6",
+      "id": "f372b9f3-d13d-4302-9c38-e10a5aa75d87",
       "kwargs": {
         "max_value": {
           "$PARAMETER": "bronze_transaction_count"
@@ -14,7 +14,7 @@
       "type": "expect_table_row_count_to_be_between"
     },
     {
-      "id": "7504b82f-17e0-4dfa-a0d4-efd085e38cbc",
+      "id": "089f0da2-4e0c-43ee-8f2f-7f744def6ae2",
       "kwargs": {
         "column": "transaction_id"
       },
@@ -24,7 +24,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "cd13789b-fb20-4ab4-8f80-0cf802098acd",
+      "id": "179914ed-d58f-4bb1-bd01-b8964e875b31",
       "kwargs": {
         "column": "amount"
       },
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c28a05de-2c2c-45d7-a7ed-3dfcbfc1b801",
+      "id": "00c9680d-2744-44b0-8ba8-477c12964701",
       "kwargs": {
         "column": "currency"
       },
@@ -44,7 +44,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "fc2f6e53-2ee9-4eea-9a9b-2ef31cb1d0eb",
+      "id": "5fd5ced3-ae27-4811-850b-71658558aeab",
       "kwargs": {
         "column": "status"
       },
@@ -54,7 +54,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a77fe2d9-28e3-48da-9cf2-8773a99bf117",
+      "id": "09d7d436-3687-49ab-84e4-b73fcdae2271",
       "kwargs": {
         "column": "amount",
         "max_value": 999999.99,
@@ -66,7 +66,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "70c1ef28-e138-49c0-bb58-69fa4c247e43",
+      "id": "0de1a87f-cf70-4bf4-8005-05d7d697f74a",
       "kwargs": {
         "column": "currency",
         "value_set": [
@@ -83,7 +83,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "3f2f73b9-162a-4b9e-af31-89ed32492b5f",
+      "id": "caf3bc05-3b79-4899-b03c-966e87ef674e",
       "kwargs": {
         "column": "status",
         "value_set": [
@@ -98,7 +98,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "758c500c-bfa2-413c-adee-28d4f12cd9e2",
+      "id": "d74db20c-019c-4ebd-bf9f-6db0244822ed",
       "kwargs": {
         "column": "transaction_id"
       },

@@ -214,7 +214,7 @@ def generate_html(dbt: dict, behave: dict, ge: dict) -> str:
 
     dbt_color    = status_color(dbt["passed"], dbt["total"]) if dbt["total"] > 0 else "#28a745"
     behave_color = status_color(behave["steps_passed"], behave["steps_passed"] + behave["steps_failed"])
-    ge_color     = "#28a745" if ge["overall_success"] else "#dc3545"
+    ge_color     = status_color(ge["total_passed"], ge["total_evaluated"])
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -381,27 +381,7 @@ def generate_html(dbt: dict, behave: dict, ge: dict) -> str:
         </div>
     </div>
 
-    <!-- Medallion Architecture -->
-    <div class="section">
-        <h3>Medallion Architecture Coverage</h3>
-        <div class="architecture">
-            <div class="layer">
-                <div class="name">Bronze</div>
-                <div class="status">✅</div>
-                <div class="count">Raw + DQ Flags</div>
-            </div>
-            <div class="layer">
-                <div class="name">Silver</div>
-                <div class="status">✅</div>
-                <div class="count">Cleaned Data</div>
-            </div>
-            <div class="layer">
-                <div class="name">Gold</div>
-                <div class="status">✅</div>
-                <div class="count">Aggregations</div>
-            </div>
-        </div>
-    </div>
+   
 
     <!-- Known Findings -->
     <div class="findings">

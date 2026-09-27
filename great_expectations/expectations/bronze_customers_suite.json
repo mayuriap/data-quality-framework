@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "17dd6fd7-0a22-476a-827a-54544e46d200",
+      "id": "4e2d0787-118f-48f1-8ac9-8b782df2da67",
       "kwargs": {
         "max_value": 10000,
         "min_value": 1
@@ -12,7 +12,7 @@
       "type": "expect_table_row_count_to_be_between"
     },
     {
-      "id": "76272a68-14b3-4511-b078-f9cc41e41374",
+      "id": "25edcc44-b00b-4407-8956-41a2cb9fc6cb",
       "kwargs": {
         "column": "customer_id"
       },
@@ -22,7 +22,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3d4cf358-05b7-42ff-8988-10f7ac9d0f71",
+      "id": "17685bfc-867c-4073-9c81-22ce422f0d39",
       "kwargs": {
         "column": "dq_email_flag"
       },
@@ -32,7 +32,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "48a1be4e-db0a-407f-8cb5-68caa79babdc",
+      "id": "24e1410c-e833-4640-a9c5-8ad53ece4717",
       "kwargs": {
         "column": "dq_name_flag"
       },
@@ -42,7 +42,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "59ae7691-0af5-4b6f-b0df-d41f2a6a3aad",
+      "id": "1233f0a2-d20f-450b-95a7-287d4032acc2",
       "kwargs": {
         "column": "dq_phone_flag"
       },
@@ -52,7 +52,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f5365c35-e0e4-413f-acdd-6ebc1921e79a",
+      "id": "7ba6a73c-9f37-4ea9-b34d-fe68a6dde9b6",
       "kwargs": {
         "column": "dq_email_flag",
         "value_set": [
@@ -67,7 +67,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "b3049f98-1a7b-44b7-a757-78ec5019a851",
+      "id": "3641b015-0448-4026-b77b-9cb24755419b",
       "kwargs": {
         "column": "dq_name_flag",
         "value_set": [
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "ca1a9b94-3dfb-430f-a0a7-19a8b9b310fb",
+      "id": "8e192ec2-7a3d-4add-8016-78f011ee8851",
       "kwargs": {
         "column": "dq_phone_flag",
         "value_set": [
