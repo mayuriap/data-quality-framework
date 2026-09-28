@@ -405,6 +405,9 @@ Pipeline status: [![CI](https://github.com/mayuriap/data-quality-framework/actio
   within SLA time limits
 - **Add incremental testing** — Verify incremental dbt runs process only 
   new records without duplicating existing data
+-**Schema drift** — new unexpected columns appearing in source tables
+-**Volume anomaly detection** — if row count drops by more than X% compared to previous run
+-**Cross-currency consistency** — same transaction_id appearing with two different currencies
 
 ---
 
